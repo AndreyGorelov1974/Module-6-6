@@ -1,6 +1,7 @@
 ﻿/*Задание 6. Вклады
 Что нужно сделать
-Вклад в банке составляет X рублей.Ежегодно он увеличивается на P процентов, после чего дробная часть копеек отбрасывается.Определите, через сколько лет вклад составит не менее Y рублей.Напишите программу, которая по данным числам X, Y, P определяет, сколько лет пройдёт, прежде чем сумма достигнет значения Y.
+Вклад в банке составляет X рублей.Ежегодно он увеличивается на P процентов, после чего дробная часть копеек отбрасывается.Определите, через сколько лет вклад составит не менее Y рублей.
+Напишите программу, которая по данным числам X, Y, P определяет, сколько лет пройдёт, прежде чем сумма достигнет значения Y.
 
 Пример выполнения
 
@@ -19,29 +20,26 @@
 
 int main()
 {
-	// количество цифр в номере билета
-	int numberLength = 6;
-	// множитель для разделения номера на две половины
-	int multiplierOfHalf = 1000;
+	std::cout << "Введите размер вклада: ";
+	int depositAmount;
+	std::cin >> depositAmount;
+	std::cout << "Введите процентную ставку: ";
+	int interestRate;
+	std::cin >> interestRate;
+	std::cout << "Введите желаемую сумму: ";
+	int depositFinal;
+	std::cin >> depositFinal;
 
-	std::cout << "Введите номер билета (" << numberLength << " цифр): ";
-	int ticketNumber;
-	std::cin >> ticketNumber;
+	int yearsPassed = 0;
+	// ожидаемый максимальный возраст клиента )))
+	int maxAge = 120;
 
-	// разделение числа на две половины
-	int leftHalfOfNumber = ticketNumber / multiplierOfHalf;
-	int rightHalfOfNumber = ticketNumber % multiplierOfHalf;
-
-	int leftSum = 0, rightSum = 0;
-
-	while (leftHalfOfNumber > 0) {
-		leftSum += leftHalfOfNumber % 10;
-		leftHalfOfNumber /= 10;
-		rightSum += rightHalfOfNumber % 10;
-		rightHalfOfNumber /= 10;
+	while ((depositAmount < depositFinal) && (yearsPassed < maxAge)) {
+		depositAmount += (depositAmount / 100 * interestRate);
+		yearsPassed++;
 	}
-
-	if (leftSum == rightSum) std::cout << "Билет счастливый\n";
-	else std::cout << "Билет не счастливый\n";
-
+	
+	if (yearsPassed < maxAge) std::cout << "Придётся подождать: " << yearsPassed << "лет.";
+	else std::cout << "Вряд ли Вы сможете прожить более " << maxAge << "лет, что бы накопить необходимую сумму";
+	
 }
