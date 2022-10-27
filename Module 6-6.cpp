@@ -1,4 +1,4 @@
-﻿/*Задание 6. Вклады
+/*Задание 6. Вклады
 Что нужно сделать
 Вклад в банке составляет X рублей.Ежегодно он увеличивается на P процентов, после чего дробная часть копеек отбрасывается.Определите, через сколько лет вклад составит не менее Y рублей.
 Напишите программу, которая по данным числам X, Y, P определяет, сколько лет пройдёт, прежде чем сумма достигнет значения Y.
@@ -35,11 +35,11 @@ int main()
 	int maxAge = 120;
 
 	while ((depositAmount < depositFinal) && (yearsPassed < maxAge)) {
-		depositAmount += (depositAmount / 100 * interestRate);
+		depositAmount += (depositAmount * interestRate / 100);
 		yearsPassed++;
 	}
 	
-	if (yearsPassed < maxAge) std::cout << "Придётся подождать: " << yearsPassed << "лет.";
-	else std::cout << "Вряд ли Вы сможете прожить более " << maxAge << "лет, что бы накопить необходимую сумму";
+	if (yearsPassed < maxAge) std::cout << "Придётся подождать: " << yearsPassed << " лет.";
+	else std::cout << "Вряд ли Вы сможете прожить более " << maxAge << " лет, что бы накопить необходимую сумму";
 	
 }
